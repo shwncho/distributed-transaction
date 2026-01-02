@@ -22,4 +22,15 @@ public class Product {
         this.quantity = quantity;
         this.price = price;
     }
+
+    public Long calculatePrice(Long quantity) {
+        return price * quantity;
+    }
+
+    public void buy(Long quantity) {
+        if( this.quantity < quantity ) {
+            throw new RuntimeException("재고가 부족합니다.");
+        }
+        this.quantity -= quantity;
+    }
 }
