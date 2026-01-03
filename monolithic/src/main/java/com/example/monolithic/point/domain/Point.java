@@ -21,4 +21,11 @@ public class Point {
         this.userId = userId;
         this.amount = amount;
     }
+
+    public void use(Long amount) {
+        if(this.amount < amount) {
+            throw new RuntimeException("잔액이 부족합니다.");
+        }
+        this.amount = this.amount - amount;
+    }
 }
