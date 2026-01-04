@@ -14,7 +14,7 @@ public class PointService {
     }
 
     @Transactional
-    public void user(Long userId, Long amount) {
+    public void use(Long userId, Long amount) {
         Point point = pointRepository.findByUserId(userId);
 
         if (point == null) {
