@@ -10,10 +10,26 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+
     public Order() {
+        status = OrderStatus.CREATED;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void complete() {
+        status = OrderStatus.COMPLETED;
+    }
+
+    public enum OrderStatus {
+        CREATED, COMPLETED
     }
 }
