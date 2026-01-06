@@ -1,6 +1,5 @@
 package com.example.order.infrastructure;
 
-
 import com.example.order.domain.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
