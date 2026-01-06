@@ -6,16 +6,17 @@ import jakarta.persistence.*;
 @Table(name = "products")
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long quantity;
 
     private Long price;
 
-    public Product() {
+    @Version
+    private Long version;
 
+    public Product() {
     }
 
     public Product(Long quantity, Long price) {
@@ -28,9 +29,14 @@ public class Product {
     }
 
     public void buy(Long quantity) {
-        if( this.quantity < quantity ) {
+        if (this.quantity < quantity) {
             throw new RuntimeException("재고가 부족합니다.");
         }
-        this.quantity -= quantity;
+
+        this.quantity = this.quantity - quantity;
+    }
+
+    public void cancel(Long quantity) {
+        this.quantity = this.quantity + quantity;
     }
 }
